@@ -8,4 +8,6 @@ It provides below features:
 3. Add tables, spreadsheets, ordered an unordered lists to their documents
 
 The sample images are linked below:
+![alt text](https://github.com/shivaniThakur93/editor/blob/master/text_quote_editing.png)
+
 
