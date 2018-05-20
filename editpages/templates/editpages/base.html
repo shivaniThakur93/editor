@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'editpages/css/medium-editor.css'  %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'editpages/css/default.css'  %}" />
+    <!--<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">-->
+    {% block style %}
+    {% endblock style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'editpages/css/image-plugin/medium-editor-insert-plugin.css'  %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'editpages/css/tables-plugin/medium-editor-tables.css'  %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'editpages/css/spreadsheet-plugin/medium-editor-handsontable.css'  %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'editpages/css/spreadsheet-plugin/handsontable.full.css'  %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'editpages/css/pdf-plugin/pdf.css'  %}" />
+    <!-- JS -->
+    {% block js %}
+    {% endblock js %}
+    <script src="{% static 'editpages/js/image-plugin/jquery/dist/jquery.min.js' %}"></script>
+   <!-- <script src="editpages/js/image-plugin/medium-editor/dist/js/medium-editor.js"></script> -->
+    {% block js2 %}
+    {% endblock js2 %}
+
+    <script src="{% static 'editpages/js/medium-editor.js'  %}"></script>
+    <script src="{% static 'editpages/js/multiplaceholder-plugin/medium-editor-multi-placeholders-plugin.js'  %}"></script>
+    <script src="{% static 'editpages/js/autolist-plugin/autolist.js'  %}"></script>
+    <script src="{% static 'editpages/js/pdf-plugin/pdf.js'  %}"></script>
+    <script src="{% static 'editpages/js/pdf-plugin/pdf.worker.js'  %}"></script>
+    <script src="{% static 'editpages/js/image-plugin/handlebars/handlebars.runtime.min.js' %}"></script>
+    <script src="{% static 'editpages/js/image-plugin/jquery-sortable/source/js/jquery-sortable-min.js' %}"></script>
+    <script src="{% static 'editpages/js/image-plugin/blueimp-file-upload/js/vendor/jquery.ui.widget.js'  %}"></script>
+    <script src="{% static 'editpages/js/image-plugin/blueimp-file-upload/js/jquery.iframe-transport.js'  %}"></script>
+    <script src="{% static 'editpages/js/image-plugin/blueimp-file-upload/js/jquery.fileupload.js'  %}"></script>
+    <script src="{% static 'editpages/js/image-plugin/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.js'  %}"></script>
+    <script src="{% static 'editpages/js/tables-plugin/medium-editor-tables.js'  %}"></script>
+    <script src="{% static 'editpages/js/spreadsheet-plugin/handsontable.js'  %}"></script>
+    <script src="{% static 'editpages/js/spreadsheet-plugin/medium-editor-handsontable.js'  %}"></script>
+</head>
+<body>
+    <div class="editable container-center">
+    </div>
+  </br>
+<script type="text/javascript" charset="utf-8">
+    var editor = new MediumEditor('.editable', {
+    buttonLabels: 'fontawesome',
+    placeholder: false,
+    toolbar: {
+        /* These are the default options for the toolbar,
+           if nothing is passed this is what is used */
+        allowMultiParagraphSelection: true,
+        buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3', 'quote','table','spreadsheet', 'pre', 'unorderedlist','orderedlist'],
+        diffLeft: 0,
+        diffTop: -10,
+        firstButtonClass: 'medium-editor-button-first',
+        lastButtonClass: 'medium-editor-button-last',
+        relativeContainer: null,
+        standardizeSelectionStart: false,
+        static: false,
+        /* options which only apply when static is true */
+        align: 'center',
+        sticky: true,
+        static: true,
+        updateOnEmptySelection: false
+    },
+    extensions: {
+      spreadsheet: new MediumEditorSpreadsheet(),
+      'autolist': new AutoList(),
+      'multi_placeholder': new MediumEditorMultiPlaceholders({
+          placeholders: [
+              {
+                tag: 'h1',
+                text: 'Title'
+              },
+              {
+                tag: 'p',
+                text: 'Tell your story...'
+              }
+          ]
+        }),
+      table: new MediumEditorTable({
+      rows: 20,
+      columns: 20
+      })
+    }
+});
+    $(function () {
+    $('.editable').mediumInsert({
+        editor: editor
+    });
+});
+
+</script>
+</body>
+</html>
